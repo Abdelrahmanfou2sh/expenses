@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class ThemeCubit extends Cubit<ThemeMode> {
+  ThemeCubit() : super(ThemeMode.light) {
+    _loadTheme();
+  }
+
+  void toggleTheme() async {
+    final newTheme = state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    emit(newTheme);
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isDarkMode', newTheme == ThemeMode.dark);
+  }
+
+  void _loadTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isDarkMode = prefs.getBool('isDarkMode') ?? false;
+    emit(isDarkMode ? ThemeMode.dark : ThemeMode.light);
+  }
+  ThemeData getDarkTheme() {
+    return ThemeData(
+      brightness: Brightness.dark,
+      primaryColor: Colors.deepPurple,
+      accentColor: Colors.amber,
+      scaffoldBackgroundColor: Colors.black,
+      cardColor: Colors.grey[900],
+      textTheme: const TextTheme(
+        bodyText1: TextStyle(color: Colors.white),
+        bodyText2: TextStyle(color: Colors.grey),
+        headline6: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.deepPurple,
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+    );
+  }
+
+}
