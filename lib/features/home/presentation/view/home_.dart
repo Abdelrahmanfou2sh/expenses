@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late Box<AccountModel> accountBox;
   late Box<ExpenseModel> expenseBox;
   late Box<String> categoryBox;
+
   List<ExpenseModel> allTransactions = [];
   List<ExpenseModel> filteredTransactions = [];
   String selectedFilter = 'All';

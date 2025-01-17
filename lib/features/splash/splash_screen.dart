@@ -1,4 +1,4 @@
-import 'package:expenses_manager/features/home/presentation/view/home_.dart';
+import 'package:expenses_manager/home.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => HomeeScreen()),
       );
     });
   }

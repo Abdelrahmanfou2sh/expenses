@@ -14,7 +14,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(ExpenseModelAdapter());
   Hive.registerAdapter(AccountModelAdapter());
-  await Hive.openBox<ExpenseModel>('expensees');
+  await Hive.openBox<ExpenseModel>('expenses');
   await Hive.openBox<AccountModel>('account_box');
   await Hive.openBox<String>('category_box');
   await initializeCategories();
